@@ -1,7 +1,11 @@
 import asyncio
 import logging
 from bot import dp, bot
-from handlers import start_router, pic_router, callback_router, echo_router, menu_router
+from handlers import start_router, pic_router, callback_router, echo_router, menu_router, comment_router
+
+
+# async def on_startup():
+#     await database.create_tables()
 
 
 async def main():
@@ -11,6 +15,10 @@ async def main():
     dp.include_router(echo_router)
     dp.include_router(menu_router)
 
+    # dp.startup.register(on_startup)
+
+
+    dp.include_router(comment_router)
     await dp.start_polling(bot)
 
 
